@@ -1,0 +1,66 @@
+using Core;
+
+namespace Example {
+    // T is equal to type which implements this interface
+    interface MathVector : T {
+        public f32 length(&self);
+        public f32 dot(T a, T b);
+    }
+
+    public struct Vector2 {
+        f32 x;
+        f32 y;
+    }
+
+    public struct Vector3 {
+        f32 x;
+        f32 y;
+        f32 z;
+    }
+
+    public struct Vector4 {
+        f32 x;
+        f32 y;
+        f32 z;
+        f32 w;
+    }
+
+    impl struct Vector2 : MathVector {
+        public f32 length(&self) {
+            return Math.sqrt(self.x * self.x + self.y * self.y);
+        }
+
+        public f32 dot(Vector2 a, Vector2 b) {
+            return a.x * b.x + a.y * b.y;
+        }
+    }
+
+    impl struct Vector3 : MathVector {
+        public f32 length(&self) {
+            return Math.sqrt(self.x * self.x + self.y * self.y + self.z * self.z);
+        }
+
+        public f32 dot(Vector3 a, Vector3 b) {
+            return a.x * b.x + a.y * b.y + a.z * b.z;
+        }
+    }
+
+    impl struct Vector4 : MathVector {
+        public f32 length(&self) {
+            return Math.sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w);
+        }
+
+        public f32 dot(Vector4 a, Vector4 b) {
+            return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
+        }
+    }
+
+    i32 main() {
+        Vector2 v = Vector2 { 0.5f, 1.0f };
+        f32 len = v.length();
+        print(len);
+
+        return 0;
+    }
+}
+
