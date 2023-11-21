@@ -24,6 +24,12 @@ Here is a list of predefined, primitive types that can be used throughout a prog
 | `f128` | 16 | 128-bit floating point number
 | `bool` | 1 | Boolean
 
+Primitive types can be casted between each other no matter what. However, casts between integer and floating point types will result a conversion which gives the closest* numerically-equivalent value.
+
+For example, a cast from `f32` to `i32` will result in a number rounded towards to `0` (round down when positive, round up when negative—this is called truncation). Additionally, a cast from `i32` to `f32` will result in the closest possible value (`55555555` becomes `55555556.0` due to precision loss).
+
+> Note: For using multiple type interpretations of a single value, see [unions](../user/types.md#union).
+
 ## Literals
 
 | Name | Description

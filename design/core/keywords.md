@@ -1,4 +1,4 @@
-# Statements
+# Keywords
 
 ## If
 
@@ -6,7 +6,7 @@
 if (CONDITION) { ... }
 ```
 
-- `CONDITION` is the boolean condition to check.
+- `CONDITION` is a boolean condition. (`true`/`false`)
 
 If `CONDITION` is true, the code inside the brackets (`{ ... }`) is executed. Otherwise, anything inside the brackets is skipped entirely.
 
@@ -15,6 +15,8 @@ If `CONDITION` is true, the code inside the brackets (`{ ... }`) is executed. Ot
 ```
 if (CONDITION) { ... } else { ... }
 ```
+
+- `CONDITION` is a boolean condition. (`true`/`false`)
 
 If `CONDITION` is false, the code inside the first set of brackets will not be executed. If an `else` keyword is present, the code in the second set of brackets will be executed instead.
 
@@ -41,13 +43,19 @@ match (VALUE) {
 while (CONDITION) { ... }
 ```
 
+- `CONDITION` is a boolean condition. (`true`/`false`)
+
+Similar to an [`if`](#if) statement, the code inside the brackets (`{ ... }`) is executed when `CONDITION` is `true`. However, the difference between `if` and `while` is that `while` will continuously run the branch `{ ... }` until `CONDITION` is false.
+
+> Note: This can mean that a program can "freeze" if a `while` loop is not handled carefully. While this behavior may be desireable (e.g. `while (true)`), it is recommended to take extreme caution to ensure that a program does not crash by allowing some way to escape the loop.
+
 Similar to `struct` and `union` definitions, `while` loops can also have names:
 
 ```
 while (CONDITION) NAME { ... }
 ```
 
-This can prove useful when attempting to `break` out of loops from within another loop:
+This can prove useful when using the `break` keyword to break out of loops from within another loop:
 
 ```
 while (CONDITION) OuterWhile {
@@ -55,5 +63,16 @@ while (CONDITION) OuterWhile {
         if (CONDITION3) 
             break OuterWhile;
     }
+}
+```
+
+- `CONDITION2` and `CONDITION3` are boolean conditions. (`true`/`false`)
+
+## Break
+
+```
+while (CONDITION) {
+    ...
+    break;
 }
 ```

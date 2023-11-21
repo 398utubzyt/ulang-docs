@@ -95,7 +95,7 @@ Additionally, constructors and deconstructors cannot be used for opaque pointers
 
 ### Miscellaneous
 
-Different projects require different needs. If a custom default allocator is needed, see the [Custom Allocator](../compiler/settings.md#custom-allocator) compiler setting.
+Different projects require different needs. If a custom default allocator is needed, see the [Custom Allocator](../../compiler/settings.md#custom-allocator) compiler setting.
 
 Most modern platforms support allocating memory on the heap. If a platform's method of memory allocation is unavailable, then no default allocator will be used. In these cases, the compiler will throw an error if a `new` or `drop` statement is used anywhere in the source. To fix the errors, either define a custom allocator, or remove the heap allocations from the source.
 
