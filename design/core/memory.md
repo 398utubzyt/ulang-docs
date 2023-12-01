@@ -23,7 +23,7 @@ In most cases, `COUNT` is not necessary if only one element is desired. For exam
 new TYPE;
 ```
 
-> Note: It should be clarified that these operations return a pointer (e.g. `TYPE*`/`TYPE[COUNT]`), NOT a built-in array/vector. See [Arrays](array.md) if creating a type-safe array is desired instead.
+> Note: It should be clarified that these operations return a pointer (e.g. `TYPE&`/`TYPE[COUNT]`), NOT a built-in array/vector. See [Arrays](array.md) if creating a type-safe array is desired instead.
 
 Unlike most other OOP languages, a constructor is not required for initialization. If calling a constructor *is* desired, however, it can be called by the follow expression:
 
@@ -52,7 +52,7 @@ new TYPE[COUNT] { i => (i, ...) };
 In all cases, a pointer must be freed once it is not needed. To acomplish this, the `drop` keyword can be used:
 
 ```
-TYPE* x = new TYPE;
+TYPE& x = new TYPE;
 ...
 drop x;
 ```
@@ -60,9 +60,9 @@ drop x;
 It can also be used on multiple pointer variables at once:
 
 ```
-TYPE* x = new TYPE;
-TYPE* y = new TYPE;
-TYPE* z = new TYPE;
+TYPE& x = new TYPE;
+TYPE& y = new TYPE;
+TYPE& z = new TYPE;
 ...
 drop x, y, z;
 ```

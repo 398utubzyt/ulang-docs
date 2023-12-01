@@ -57,7 +57,7 @@ struct IntFloat {
     u32 integer;
     f32 float;
 
-    IntFloat add(*self, IntFloat other) {
+    IntFloat add(&self, IntFloat other) {
         return IntFloat {
             .integer = self.integer + other.integer,
             .float = self.float + other.float
@@ -89,19 +89,39 @@ Unlike `struct`s, `interface`s can *only* contain function definitions. Function
 ```
 interface ExampleInterface {
     void function1();
-    void function2(*this);
+    void function2(&this);
 }
 
 impl u8 : ExampleInterface {
     void function1() {
-        // Implementation here!
+        ...
     }
 
-    void function2(*this) {
-        // Other implementation here!
+    void function2(&this) {
+        ...
     }
 }
 ```
+
+Additionally, constructors and deconstructors can be defined using the `new` and `drop` keywords:
+
+```
+interface ExampleInterface {
+    public new(&this);
+    public drop(&this);
+}
+
+impl u8 : ExampleInterface {
+    void new(&this) {
+        ...
+    }
+
+    void drop(&this) {
+        ...
+    }
+}
+```
+> Note: Deconstructors are limited to having no parameters, or a single `this` parameter. This is because they are automatically called when they fall out of scope.
 
 ## Union
 
