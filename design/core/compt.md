@@ -52,7 +52,7 @@ Function parameters marked with `compt` are *required* to be known at runtime. T
 For example, consider the function and its usages:
 
 ```u
-public void compt someFunction(compt f32 param) { ... }
+public compt void someFunction(compt f32 param) { ... }
 ```
 
 > Note: the `compt` constraint is not required on the function itself to constrain a parameter with `compt`.
