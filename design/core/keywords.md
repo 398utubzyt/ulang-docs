@@ -2,7 +2,7 @@
 
 ## If
 
-```
+```u
 if (CONDITION) { ... }
 ```
 
@@ -12,7 +12,7 @@ If `CONDITION` is true, the code inside the brackets (`{ ... }`) is executed. Ot
 
 ## Else
 
-```
+```u
 if (CONDITION) { ... } else { ... }
 ```
 
@@ -22,7 +22,7 @@ If `CONDITION` is false, the code inside the first set of brackets will not be e
 
 Additionally, another `if` statement can be appended after the `else` keyword in order to chain `if` statements together.
 
-```
+```u
 if (CONDITION) { ... } else if (CONDITION2) { ... }
 ```
 
@@ -30,7 +30,7 @@ if (CONDITION) { ... } else if (CONDITION2) { ... }
 
 `match` statements are functionally similar to `switch` statements in languages like C:
 
-```
+```u
 match (VALUE) {
     A { ... },
     B, C { ... }
@@ -39,7 +39,7 @@ match (VALUE) {
 
 ## While
 
-```
+```u
 while (CONDITION) { ... }
 ```
 
@@ -51,13 +51,13 @@ Similar to an [`if`](#if) statement, the code inside the brackets (`{ ... }`) is
 
 Similar to `struct` and `union` definitions, `while` loops can also have names:
 
-```
+```u
 while (CONDITION) NAME { ... }
 ```
 
 This can prove useful when using the `break` keyword to break out of loops from within another loop:
 
-```
+```u
 while (CONDITION) OuterWhile {
     while (CONDITION2) {
         if (CONDITION3) 
@@ -70,7 +70,7 @@ while (CONDITION) OuterWhile {
 
 ## Break
 
-```
+```u
 while (CONDITION) {
     ...
     break;

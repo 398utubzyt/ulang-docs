@@ -8,7 +8,7 @@ In U, dynamic memory allocations can occur one of two places: the heap and the s
 
 This is the most common type of dynamic memory allocation. Similar to most other OOP languages, this is done with a `new` keyword. In its most simplist form, a `new` expression can be generalized into the following expression:
 
-```
+```u
 new TYPE[COUNT];
 ```
 
@@ -19,29 +19,29 @@ This allocates a chunk of memory on the heap of size `COUNT * sizeof(TYPE)` byte
 
 In most cases, `COUNT` is not necessary if only one element is desired. For example:
 
-```
+```u
 new TYPE;
 ```
 
-> Note: It should be clarified that these operations return a pointer (e.g. `TYPE&`/`TYPE[COUNT]`), NOT a built-in array/vector. See [Arrays](array.md) if creating a type-safe array is desired instead.
+> Note: It should be clarified that these operations return a pointer (e.g. `TYPE&`/`TYPE[COUNT]`), NOT a built-in array/vector. <!-- See [Arrays](array.md) if creating a type-safe array is desired instead.-->
 
 Unlike most other OOP languages, a constructor is not required for initialization. If calling a constructor *is* desired, however, it can be called by the follow expression:
 
-```
+```u
 new TYPE(...);
 ```
 
-Normally, if a type is initialized with a constructor and also contains a deconstructor, the deconstructor is called when the constructed object is freed. However, since this is a pointer allocation, a manual free call is required in order to call it. See [Deconstruction](#Deconstruction) for more info.
+Normally, if a type is initialized with a constructor and also contains a deconstructor, the deconstructor is called when the constructed object is freed. However, since this is a pointer allocation, a manual free call is required in order to call it. See [Deconstruction](#deconstruction) for more info.
 
 Additionally, if it is desired to initialize an array of values (see first example), the following syntax can be used:
 
-```
+```u
 new TYPE[COUNT](...);
 ```
 
 If an index should be passed to the constructor, a lambda expression can be used to pass an index of type `usize` to it:
 
-```
+```u
 new TYPE[COUNT] { i => (i, ...) };
 ```
 
@@ -51,7 +51,7 @@ new TYPE[COUNT] { i => (i, ...) };
 
 In all cases, a pointer must be freed once it is not needed. To acomplish this, the `drop` keyword can be used:
 
-```
+```u
 TYPE& x = new TYPE;
 ...
 drop x;
@@ -59,7 +59,7 @@ drop x;
 
 It can also be used on multiple pointer variables at once:
 
-```
+```u
 TYPE& x = new TYPE;
 TYPE& y = new TYPE;
 TYPE& z = new TYPE;
@@ -71,7 +71,7 @@ drop x, y, z;
 
 Stack allocation syntax is very similar to heap allocation syntax. However, there is a key difference:
 
-```
+```u
 stack new TYPE[COUNT]; 
 ```
 

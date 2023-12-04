@@ -1,41 +1,49 @@
 using Core;
 
 namespace Example {
-    // T is equal to type which implements this interface
-    interface MathVector : T {
-        public f32 length(&self);
-        public f32 dot(T a, T b);
+    // `TSelf` is the type which implements this interface
+    // MathVector constrains itself to only floating point primitives
+    interface MathVector<T> : TSelf T : f16, f32, f64, f128 {
+        public T length(&self);
+        public T dot(TSelf a, TSelf b);
     }
 
-    public struct Vector2 {
-        f32 x;
-        f32 y;
+    public struct Vector2<T> T : f16, f32, f64, f128 {
+        T x;
+        T y;
     }
 
-    public struct Vector3 {
-        f32 x;
-        f32 y;
-        f32 z;
+    public struct Vector3<T> T : f16, f32, f64, f128 {
+        T x;
+        T y;
+        T z;
     }
 
-    public struct Vector4 {
-        f32 x;
-        f32 y;
-        f32 z;
-        f32 w;
+    public struct Vector4<T> T : f16, f32, f64, f128 {
+        T x;
+        T y;
+        T z;
+        T w;
     }
 
-    impl struct Vector2 : MathVector {
-        public f32 length(&self) {
+    /* Elsewhere... */
+
+    // `T` is already defined in the original struct definition,
+    // there is no need to define it again.
+    impl Vector2<T> : MathVector<T> {
+        // `&self` parameter makes this an instance function
+        public T length(&self) {
+            // Math.sqrt<T> is generic -- `T` is implied through parameter type
             return Math.sqrt(self.x * self.x + self.y * self.y);
         }
 
-        public f32 dot(Vector2 a, Vector2 b) {
+        // No `&self` -- this is a "static" function
+        public T dot(Vector2<T> a, Vector2<T> b) {
             return a.x * b.x + a.y * b.y;
         }
     }
 
-    impl struct Vector3 : MathVector {
+    impl Vector3<T> : MathVector<T> {
         public f32 length(&self) {
             return Math.sqrt(self.x * self.x + self.y * self.y + self.z * self.z);
         }
@@ -45,22 +53,27 @@ namespace Example {
         }
     }
 
-    impl struct Vector4 : MathVector {
-        public f32 length(&self) {
+    impl Vector4<T> : MathVector<T> {
+        public T length(&self) {
             return Math.sqrt(self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w);
         }
 
-        public f32 dot(Vector4 a, Vector4 b) {
+        public T dot(Vector4 a, Vector4 b) {
             return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
         }
     }
 
+    /* Entry point */
     i32 main() {
-        Vector2 v = Vector2 { 0.5f, 1.0f };
+        // Can also be defined with { 0.5f32, 1.0f32 }
+        Vector2<f32> v = Vector2<f32> { 0.5, 1.0 };
         f32 len = v.length();
-        print(len);
+        printLine(len); // Core.printLine
 
         return 0;
     }
+
+    // Expected output:
+    // 1.11803399
 }
 
